@@ -8,7 +8,9 @@
 
 
 #include <asf.h>
-
+	
+	
+#define NUM_LEDS 60
 
 
 // SPI uses SERCOM1
@@ -93,18 +95,28 @@ static void sendByte (int value) {
 }
 
 static void sendRGB (int r, int g, int b) {
-    spiSend(0);
-	spiSend(0);
 	sendByte(g);
 	sendByte(r);
 	sendByte(b);
-	spiSend(0);
-	spiSend(0);
-	
 }
 
+static void cometTail (int count, int r, int g, int b) {
+	spiSend(0); // we need to send zero bytes for the sytem to reset itself!
+	spiSend(0);
+	for (int i = NUM_LEDS - count; i <= NUM_LEDS; ++i) {
+		int phase = 4 * i;
+		if (phase < 0)
+		phase = 0;
+		sendRGB(r * phase, g * phase, b * phase);
+	}
+}
 
-
+static void cometRacer(int r, int g, int b) {
+	for (int i = 0; i < NUM_LEDS*3; ++i) {
+		cometTail(i, r, g, b);
+		delay_ms(5);
+	}
+}
 
 int main (void)
 {
@@ -116,17 +128,12 @@ int main (void)
 	
 	
 	while (1) {
-		
-		
+		        cometRacer(1, 0, 0);    // red
+		        cometRacer(0, 1, 0);    // green
+		        cometRacer(0, 0, 1);    // blue
 		
 
 
-		int i;
-		for(i=0;i<60;i++){
-			sendRGB(i,i,i);
-			delay_ms(100);
-		}
-		
 
 	}
 }
