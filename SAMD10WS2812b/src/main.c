@@ -10,7 +10,7 @@
 #include <asf.h>
 	
 	
-#define NUM_LEDS 60
+#define NUM_LEDS 12
 
 
 // SPI uses SERCOM1
@@ -114,7 +114,7 @@ static void cometTail (int count, int r, int g, int b) {
 static void cometRacer(int r, int g, int b) {
 	for (int i = 0; i < NUM_LEDS*3; ++i) {
 		cometTail(i, r, g, b);
-		delay_ms(5);
+		delay_ms(50); 
 	}
 }
 
@@ -131,9 +131,6 @@ int main (void)
 		        cometRacer(1, 0, 0);    // red
 		        cometRacer(0, 1, 0);    // green
 		        cometRacer(0, 0, 1);    // blue
-		
-
-
 
 	}
 }

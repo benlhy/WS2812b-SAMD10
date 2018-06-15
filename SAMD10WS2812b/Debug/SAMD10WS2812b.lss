@@ -3,41 +3,41 @@ SAMD10WS2812b.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00001334  00000000  00000000  00010000  2**2
+  0 .text         0000139c  00000000  00000000  00010000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .relocate     0000000c  20000000  00001334  00020000  2**2
+  1 .relocate     0000000c  20000000  0000139c  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000000a0  2000000c  00001340  0002000c  2**2
+  2 .bss          00000064  2000000c  000013a8  0002000c  2**2
                   ALLOC
-  3 .stack        00000404  200000ac  000013e0  0002000c  2**0
+  3 .stack        00000400  20000070  0000140c  0002000c  2**0
                   ALLOC
   4 .ARM.attributes 00000028  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
   5 .comment      00000059  00000000  00000000  00020034  2**0
                   CONTENTS, READONLY
-  6 .debug_info   000193cf  00000000  00000000  0002008d  2**0
+  6 .debug_info   00016d97  00000000  00000000  0002008d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000022e0  00000000  00000000  0003945c  2**0
+  7 .debug_abbrev 000022bb  00000000  00000000  00036e24  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    0000512f  00000000  00000000  0003b73c  2**0
+  8 .debug_loc    0000526a  00000000  00000000  000390df  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 00000388  00000000  00000000  0004086b  2**0
+  9 .debug_aranges 00000388  00000000  00000000  0003e349  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000006a8  00000000  00000000  00040bf3  2**0
+ 10 .debug_ranges 000006d8  00000000  00000000  0003e6d1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_macro  00014305  00000000  00000000  0004129b  2**0
+ 11 .debug_macro  000142e2  00000000  00000000  0003eda9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   000091de  00000000  00000000  000555a0  2**0
+ 12 .debug_line   000091a1  00000000  00000000  0005308b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    0006e21f  00000000  00000000  0005e77e  2**0
+ 13 .debug_str    0006d535  00000000  00000000  0005c22c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  0000088c  00000000  00000000  000cc9a0  2**2
+ 14 .debug_frame  00000894  00000000  00000000  000c9764  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <_sfixed>:
-       0:	200004b0 	.word	0x200004b0
+       0:	20000470 	.word	0x20000470
        4:	00000ec9 	.word	0x00000ec9
        8:	00000ec5 	.word	0x00000ec5
        c:	00000ec5 	.word	0x00000ec5
@@ -83,7 +83,7 @@ Disassembly of section .text:
       a6:	bd10      	pop	{r4, pc}
       a8:	2000000c 	.word	0x2000000c
       ac:	00000000 	.word	0x00000000
-      b0:	00001334 	.word	0x00001334
+      b0:	0000139c 	.word	0x0000139c
 
 000000b4 <frame_dummy>:
       b4:	4b08      	ldr	r3, [pc, #32]	; (d8 <frame_dummy+0x24>)
@@ -106,8 +106,8 @@ Disassembly of section .text:
       d6:	e7f9      	b.n	cc <frame_dummy+0x18>
       d8:	00000000 	.word	0x00000000
       dc:	20000010 	.word	0x20000010
-      e0:	00001334 	.word	0x00001334
-      e4:	00001334 	.word	0x00001334
+      e0:	0000139c 	.word	0x0000139c
+      e4:	0000139c 	.word	0x0000139c
       e8:	00000000 	.word	0x00000000
 
 000000ec <delay_init>:
@@ -144,7 +144,7 @@ void delay_init(void)
 }
      112:	bd70      	pop	{r4, r5, r6, pc}
      114:	00000bd9 	.word	0x00000bd9
-     118:	0000112d 	.word	0x0000112d
+     118:	00001195 	.word	0x00001195
      11c:	20000004 	.word	0x20000004
      120:	000f4240 	.word	0x000f4240
      124:	20000000 	.word	0x20000000
@@ -526,7 +526,7 @@ uint8_t _sercom_get_sercom_inst_index(
      2be:	b005      	add	sp, #20
      2c0:	bd30      	pop	{r4, r5, pc}
      2c2:	46c0      	nop			; (mov r8, r8)
-     2c4:	000012a0 	.word	0x000012a0
+     2c4:	00001308 	.word	0x00001308
 
 000002c8 <SERCOM0_Handler>:
 	/* Get the vector number from the lookup table for the requested SERCOM */
@@ -1781,7 +1781,7 @@ static inline void _system_dfll_wait_for_sync(void)
 }
      758:	bd10      	pop	{r4, pc}
      75a:	46c0      	nop			; (mov r8, r8)
-     75c:	000012ac 	.word	0x000012ac
+     75c:	00001314 	.word	0x00001314
      760:	20000040 	.word	0x20000040
      764:	40000800 	.word	0x40000800
      768:	007a1200 	.word	0x007a1200
@@ -2267,7 +2267,7 @@ static inline void _system_dfll_wait_for_sync(void)
 	return STATUS_OK;
 }
      956:	4770      	bx	lr
-     958:	000012d0 	.word	0x000012d0
+     958:	00001338 	.word	0x00001338
      95c:	40000800 	.word	0x40000800
      960:	20000040 	.word	0x20000040
 
@@ -3170,7 +3170,7 @@ static inline void system_interrupt_leave_critical_section(void)
      c54:	000006e5 	.word	0x000006e5
      c58:	40000c08 	.word	0x40000c08
      c5c:	00000659 	.word	0x00000659
-     c60:	0000112d 	.word	0x0000112d
+     c60:	00001195 	.word	0x00001195
 
 00000c64 <system_gclk_chan_enable>:
  *
@@ -4008,9 +4008,9 @@ void Reset_Handler(void)
      f74:	e7fe      	b.n	f74 <Reset_Handler+0xac>
      f76:	46c0      	nop			; (mov r8, r8)
      f78:	20000000 	.word	0x20000000
-     f7c:	00001334 	.word	0x00001334
+     f7c:	0000139c 	.word	0x0000139c
      f80:	2000000c 	.word	0x2000000c
-     f84:	200000ac 	.word	0x200000ac
+     f84:	20000070 	.word	0x20000070
      f88:	2000000c 	.word	0x2000000c
      f8c:	20000004 	.word	0x20000004
      f90:	20000010 	.word	0x20000010
@@ -4019,8 +4019,8 @@ void Reset_Handler(void)
      f9c:	41007000 	.word	0x41007000
      fa0:	41004800 	.word	0x41004800
      fa4:	41004000 	.word	0x41004000
-     fa8:	00001245 	.word	0x00001245
-     fac:	000010d5 	.word	0x000010d5
+     fa8:	000012ad 	.word	0x000012ad
+     fac:	00001159 	.word	0x00001159
 
 00000fb0 <spiSend>:
 {
@@ -4031,7 +4031,7 @@ void Reset_Handler(void)
 	SercomSpi *const spi_module = &(module->hw->SPI);
      fb0:	4b0a      	ldr	r3, [pc, #40]	; (fdc <spiSend+0x2c>)
      fb2:	681b      	ldr	r3, [r3, #0]
-
+	spi_init(&spi_master_instance, CONF_MASTER_SPI_MODULE, &config_spi_master);
 	spi_enable(&spi_master_instance);
 }
 
@@ -4094,7 +4094,7 @@ static void spiSend(uint16_t cmd){
 	spi_write(&spi_master_instance,cmd);
 }
      fda:	4770      	bx	lr
-     fdc:	2000009c 	.word	0x2000009c
+     fdc:	20000060 	.word	0x20000060
 
 00000fe0 <sendByte>:
 
@@ -4116,554 +4116,619 @@ static void sendByte (int value) {
      ff8:	47a8      	blx	r5
 }
      ffa:	bd70      	pop	{r4, r5, r6, pc}
-     ffc:	000012f4 	.word	0x000012f4
+     ffc:	0000135c 	.word	0x0000135c
     1000:	00000fb1 	.word	0x00000fb1
 
-00001004 <configure_spi_master>:
+00001004 <cometRacer>:
+		phase = 0;
+		sendRGB(r * phase, g * phase, b * phase);
+	}
+}
+
+static void cometRacer(int r, int g, int b) {
+    1004:	b5f0      	push	{r4, r5, r6, r7, lr}
+    1006:	465f      	mov	r7, fp
+    1008:	4656      	mov	r6, sl
+    100a:	464d      	mov	r5, r9
+    100c:	4644      	mov	r4, r8
+    100e:	b4f0      	push	{r4, r5, r6, r7}
+    1010:	b083      	sub	sp, #12
+    1012:	4683      	mov	fp, r0
+    1014:	468a      	mov	sl, r1
+    1016:	4691      	mov	r9, r2
+    1018:	230c      	movs	r3, #12
+    101a:	4698      	mov	r8, r3
+	spiSend(bits[value >> 4]);
+	spiSend(bits[value & 0xF]);
+}
+
+static void sendRGB (int r, int g, int b) {
+	sendByte(g);
+    101c:	4e17      	ldr	r6, [pc, #92]	; (107c <cometRacer+0x78>)
+	sendByte(r);
+	sendByte(b);
+}
+
+static void cometTail (int count, int r, int g, int b) {
+	spiSend(0); // we need to send zero bytes for the sytem to reset itself!
+    101e:	2000      	movs	r0, #0
+    1020:	4b17      	ldr	r3, [pc, #92]	; (1080 <cometRacer+0x7c>)
+    1022:	4798      	blx	r3
+	spiSend(0);
+    1024:	2000      	movs	r0, #0
+    1026:	4b16      	ldr	r3, [pc, #88]	; (1080 <cometRacer+0x7c>)
+    1028:	4798      	blx	r3
+	for (int i = NUM_LEDS - count; i <= NUM_LEDS; ++i) {
+    102a:	4645      	mov	r5, r8
+    102c:	2d0c      	cmp	r5, #12
+    102e:	dc13      	bgt.n	1058 <cometRacer+0x54>
+    1030:	00ac      	lsls	r4, r5, #2
+    1032:	43e0      	mvns	r0, r4
+    1034:	17c0      	asrs	r0, r0, #31
+    1036:	4020      	ands	r0, r4
+		int phase = 4 * i;
+		if (phase < 0)
+		phase = 0;
+		sendRGB(r * phase, g * phase, b * phase);
+    1038:	465b      	mov	r3, fp
+    103a:	4343      	muls	r3, r0
+    103c:	9301      	str	r3, [sp, #4]
+    103e:	464f      	mov	r7, r9
+    1040:	4347      	muls	r7, r0
+	spiSend(bits[value >> 4]);
+	spiSend(bits[value & 0xF]);
+}
+
+static void sendRGB (int r, int g, int b) {
+	sendByte(g);
+    1042:	4652      	mov	r2, sl
+    1044:	4350      	muls	r0, r2
+    1046:	47b0      	blx	r6
+	sendByte(r);
+    1048:	9801      	ldr	r0, [sp, #4]
+    104a:	47b0      	blx	r6
+	sendByte(b);
+    104c:	0038      	movs	r0, r7
+    104e:	47b0      	blx	r6
+}
+
+static void cometTail (int count, int r, int g, int b) {
+	spiSend(0); // we need to send zero bytes for the sytem to reset itself!
+	spiSend(0);
+	for (int i = NUM_LEDS - count; i <= NUM_LEDS; ++i) {
+    1050:	3501      	adds	r5, #1
+    1052:	3404      	adds	r4, #4
+    1054:	2d0d      	cmp	r5, #13
+    1056:	d1ec      	bne.n	1032 <cometRacer+0x2e>
+}
+
+static void cometRacer(int r, int g, int b) {
+	for (int i = 0; i < NUM_LEDS*3; ++i) {
+		cometTail(i, r, g, b);
+		delay_ms(50); 
+    1058:	2032      	movs	r0, #50	; 0x32
+    105a:	4b0a      	ldr	r3, [pc, #40]	; (1084 <cometRacer+0x80>)
+    105c:	4798      	blx	r3
+    105e:	2301      	movs	r3, #1
+    1060:	425b      	negs	r3, r3
+    1062:	469c      	mov	ip, r3
+    1064:	44e0      	add	r8, ip
+		sendRGB(r * phase, g * phase, b * phase);
+	}
+}
+
+static void cometRacer(int r, int g, int b) {
+	for (int i = 0; i < NUM_LEDS*3; ++i) {
+    1066:	4643      	mov	r3, r8
+    1068:	3318      	adds	r3, #24
+    106a:	d1d8      	bne.n	101e <cometRacer+0x1a>
+		cometTail(i, r, g, b);
+		delay_ms(50); 
+	}
+}
+    106c:	b003      	add	sp, #12
+    106e:	bc3c      	pop	{r2, r3, r4, r5}
+    1070:	4690      	mov	r8, r2
+    1072:	4699      	mov	r9, r3
+    1074:	46a2      	mov	sl, r4
+    1076:	46ab      	mov	fp, r5
+    1078:	bdf0      	pop	{r4, r5, r6, r7, pc}
+    107a:	46c0      	nop			; (mov r8, r8)
+    107c:	00000fe1 	.word	0x00000fe1
+    1080:	00000fb1 	.word	0x00000fb1
+    1084:	0000012d 	.word	0x0000012d
+
+00001088 <configure_spi_master>:
 // baud_rate = ((clock input freq/clock_divider+1)/2)) 
 // fref =  48MHz
 // fbaud = fref/2(BAUD+1)
 
 void configure_spi_master(void)
 {
-    1004:	b530      	push	{r4, r5, lr}
-    1006:	b091      	sub	sp, #68	; 0x44
+    1088:	b530      	push	{r4, r5, lr}
+    108a:	b091      	sub	sp, #68	; 0x44
 		const struct spi_slave_inst_config *const config)
 {
 	Assert(slave);
 	Assert(config);
 
 	slave->ss_pin          = config->ss_pin;
-    1008:	4c27      	ldr	r4, [pc, #156]	; (10a8 <configure_spi_master+0xa4>)
-    100a:	2311      	movs	r3, #17
-    100c:	7023      	strb	r3, [r4, #0]
+    108c:	4c27      	ldr	r4, [pc, #156]	; (112c <configure_spi_master+0xa4>)
+    108e:	2311      	movs	r3, #17
+    1090:	7023      	strb	r3, [r4, #0]
 	slave->address_enabled = config->address_enabled;
-    100e:	2300      	movs	r3, #0
-    1010:	7063      	strb	r3, [r4, #1]
+    1092:	2300      	movs	r3, #0
+    1094:	7063      	strb	r3, [r4, #1]
 	slave->address         = config->address;
-    1012:	70a3      	strb	r3, [r4, #2]
+    1096:	70a3      	strb	r3, [r4, #2]
 	/* Sanity check arguments */
 	Assert(config);
 
 	/* Default configuration values */
 	config->direction  = PORT_PIN_DIR_INPUT;
 	config->input_pull = PORT_PIN_PULL_UP;
-    1014:	a901      	add	r1, sp, #4
-    1016:	2201      	movs	r2, #1
-    1018:	704a      	strb	r2, [r1, #1]
+    1098:	a901      	add	r1, sp, #4
+    109a:	2201      	movs	r2, #1
+    109c:	704a      	strb	r2, [r1, #1]
 	config->powersave  = false;
-    101a:	708b      	strb	r3, [r1, #2]
+    109e:	708b      	strb	r3, [r1, #2]
 	/* Get default config for pin */
 	struct port_config pin_conf;
 	port_get_config_defaults(&pin_conf);
 
 	/* Edit config to set the pin as output */
 	pin_conf.direction = PORT_PIN_DIR_OUTPUT;
-    101c:	700a      	strb	r2, [r1, #0]
+    10a0:	700a      	strb	r2, [r1, #0]
 
 	/* Set config on Slave Select pin */
 	port_pin_set_config(slave->ss_pin, &pin_conf);
-    101e:	2011      	movs	r0, #17
-    1020:	4b22      	ldr	r3, [pc, #136]	; (10ac <configure_spi_master+0xa8>)
-    1022:	4798      	blx	r3
+    10a2:	2011      	movs	r0, #17
+    10a4:	4b22      	ldr	r3, [pc, #136]	; (1130 <configure_spi_master+0xa8>)
+    10a6:	4798      	blx	r3
 	port_pin_set_output_level(slave->ss_pin, true);
-    1024:	7823      	ldrb	r3, [r4, #0]
+    10a8:	7823      	ldrb	r3, [r4, #0]
 	uint8_t group_index = (gpio_pin / 32);
 
 	/* Array of available ports */
 	Port *const ports[PORT_INST_NUM] = PORT_INSTS;
 
 	if (port_index < PORT_INST_NUM) {
-    1026:	09da      	lsrs	r2, r3, #7
+    10aa:	09da      	lsrs	r2, r3, #7
 		return &(ports[port_index]->Group[group_index]);
 	} else {
 		Assert(false);
 		return NULL;
-    1028:	2100      	movs	r1, #0
+    10ac:	2100      	movs	r1, #0
 	uint8_t group_index = (gpio_pin / 32);
 
 	/* Array of available ports */
 	Port *const ports[PORT_INST_NUM] = PORT_INSTS;
 
 	if (port_index < PORT_INST_NUM) {
-    102a:	2a00      	cmp	r2, #0
-    102c:	d104      	bne.n	1038 <configure_spi_master+0x34>
+    10ae:	2a00      	cmp	r2, #0
+    10b0:	d104      	bne.n	10bc <configure_spi_master+0x34>
 		return &(ports[port_index]->Group[group_index]);
-    102e:	0959      	lsrs	r1, r3, #5
-    1030:	01c9      	lsls	r1, r1, #7
-    1032:	4a1f      	ldr	r2, [pc, #124]	; (10b0 <configure_spi_master+0xac>)
-    1034:	4694      	mov	ip, r2
-    1036:	4461      	add	r1, ip
+    10b2:	0959      	lsrs	r1, r3, #5
+    10b4:	01c9      	lsls	r1, r1, #7
+    10b6:	4a1f      	ldr	r2, [pc, #124]	; (1134 <configure_spi_master+0xac>)
+    10b8:	4694      	mov	ip, r2
+    10ba:	4461      	add	r1, ip
 static inline void port_pin_set_output_level(
 		const uint8_t gpio_pin,
 		const bool level)
 {
 	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
 	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
-    1038:	221f      	movs	r2, #31
-    103a:	4013      	ands	r3, r2
-    103c:	3a1e      	subs	r2, #30
-    103e:	0010      	movs	r0, r2
-    1040:	4098      	lsls	r0, r3
+    10bc:	221f      	movs	r2, #31
+    10be:	4013      	ands	r3, r2
+    10c0:	3a1e      	subs	r2, #30
+    10c2:	0010      	movs	r0, r2
+    10c4:	4098      	lsls	r0, r3
 
 	/* Set the pin to high or low atomically based on the requested level */
 	if (level) {
 		port_base->OUTSET.reg = pin_mask;
-    1042:	6188      	str	r0, [r1, #24]
+    10c6:	6188      	str	r0, [r1, #24]
 {
 	/* Sanity check arguments */
 	Assert(config);
 
 	/* Default configuration values */
 	config->mode             = SPI_MODE_MASTER;
-    1044:	ac02      	add	r4, sp, #8
-    1046:	7022      	strb	r2, [r4, #0]
+    10c8:	ac02      	add	r4, sp, #8
+    10ca:	7022      	strb	r2, [r4, #0]
 	config->data_order       = SPI_DATA_ORDER_MSB;
-    1048:	2300      	movs	r3, #0
-    104a:	9303      	str	r3, [sp, #12]
+    10cc:	2300      	movs	r3, #0
+    10ce:	9303      	str	r3, [sp, #12]
 	config->transfer_mode    = SPI_TRANSFER_MODE_0;
 	config->mux_setting      = SPI_SIGNAL_MUX_SETTING_D;
 	config->character_size   = SPI_CHARACTER_SIZE_8BIT;
-    104c:	7423      	strb	r3, [r4, #16]
+    10d0:	7423      	strb	r3, [r4, #16]
 	config->run_in_standby   = false;
-    104e:	7463      	strb	r3, [r4, #17]
+    10d2:	7463      	strb	r3, [r4, #17]
 	config->receiver_enable  = true;
-    1050:	74a2      	strb	r2, [r4, #18]
+    10d4:	74a2      	strb	r2, [r4, #18]
 #  ifdef FEATURE_SPI_SLAVE_SELECT_LOW_DETECT
 	config->select_slave_low_detect_enable= true;
-    1052:	74e2      	strb	r2, [r4, #19]
+    10d6:	74e2      	strb	r2, [r4, #19]
 #  endif
 #  ifdef FEATURE_SPI_HARDWARE_SLAVE_SELECT
 	config->master_slave_select_enable= false;
-    1054:	7523      	strb	r3, [r4, #20]
+    10d8:	7523      	strb	r3, [r4, #20]
 #  endif
 	config->generator_source = GCLK_GENERATOR_0;
-    1056:	3223      	adds	r2, #35	; 0x23
-    1058:	54a3      	strb	r3, [r4, r2]
+    10da:	3223      	adds	r2, #35	; 0x23
+    10dc:	54a3      	strb	r3, [r4, r2]
 
 	/* Clear mode specific config */
 	memset(&(config->mode_specific), 0, sizeof(config->mode_specific));
-    105a:	3a18      	subs	r2, #24
-    105c:	2100      	movs	r1, #0
-    105e:	a808      	add	r0, sp, #32
-    1060:	4b14      	ldr	r3, [pc, #80]	; (10b4 <configure_spi_master+0xb0>)
-    1062:	4798      	blx	r3
+    10de:	3a18      	subs	r2, #24
+    10e0:	2100      	movs	r1, #0
+    10e2:	a808      	add	r0, sp, #32
+    10e4:	4b14      	ldr	r3, [pc, #80]	; (1138 <configure_spi_master+0xb0>)
+    10e6:	4798      	blx	r3
 	spi_slave_inst_get_config_defaults(&slave_dev_config);
 	slave_dev_config.ss_pin = SLAVE_SELECT_PIN;
 	spi_attach_slave(&slave, &slave_dev_config);
 	/* Configure, initialize and enable SERCOM SPI module */
 	spi_get_config_defaults(&config_spi_master);
 	config_spi_master.transfer_mode = SPI_TRANSFER_MODE_1;
-    1064:	2380      	movs	r3, #128	; 0x80
-    1066:	055b      	lsls	r3, r3, #21
-    1068:	60a3      	str	r3, [r4, #8]
+    10e8:	2380      	movs	r3, #128	; 0x80
+    10ea:	055b      	lsls	r3, r3, #21
+    10ec:	60a3      	str	r3, [r4, #8]
 	config_spi_master.mux_setting = CONF_MASTER_MUX_SETTING;
-    106a:	2380      	movs	r3, #128	; 0x80
-    106c:	039b      	lsls	r3, r3, #14
-    106e:	60e3      	str	r3, [r4, #12]
+    10ee:	2380      	movs	r3, #128	; 0x80
+    10f0:	039b      	lsls	r3, r3, #14
+    10f2:	60e3      	str	r3, [r4, #12]
 	config_spi_master.pinmux_pad0 = CONF_MASTER_PINMUX_PAD0;
-    1070:	4b11      	ldr	r3, [pc, #68]	; (10b8 <configure_spi_master+0xb4>)
-    1072:	62a3      	str	r3, [r4, #40]	; 0x28
+    10f4:	4b11      	ldr	r3, [pc, #68]	; (113c <configure_spi_master+0xb4>)
+    10f6:	62a3      	str	r3, [r4, #40]	; 0x28
 	config_spi_master.pinmux_pad1 = CONF_MASTER_PINMUX_PAD1;
-    1074:	4b11      	ldr	r3, [pc, #68]	; (10bc <configure_spi_master+0xb8>)
-    1076:	62e3      	str	r3, [r4, #44]	; 0x2c
+    10f8:	4b11      	ldr	r3, [pc, #68]	; (1140 <configure_spi_master+0xb8>)
+    10fa:	62e3      	str	r3, [r4, #44]	; 0x2c
 	config_spi_master.pinmux_pad2 = CONF_MASTER_PINMUX_PAD2;
-    1078:	4b11      	ldr	r3, [pc, #68]	; (10c0 <configure_spi_master+0xbc>)
-    107a:	6323      	str	r3, [r4, #48]	; 0x30
+    10fc:	4b11      	ldr	r3, [pc, #68]	; (1144 <configure_spi_master+0xbc>)
+    10fe:	6323      	str	r3, [r4, #48]	; 0x30
 	config_spi_master.pinmux_pad3 = CONF_MASTER_PINMUX_PAD3;
-    107c:	2301      	movs	r3, #1
-    107e:	425b      	negs	r3, r3
-    1080:	6363      	str	r3, [r4, #52]	; 0x34
+    1100:	2301      	movs	r3, #1
+    1102:	425b      	negs	r3, r3
+    1104:	6363      	str	r3, [r4, #52]	; 0x34
 	config_spi_master.mode_specific.master.baudrate =  2500000; //2.5MHz  = 400ns per signal
-    1082:	4b10      	ldr	r3, [pc, #64]	; (10c4 <configure_spi_master+0xc0>)
-    1084:	61a3      	str	r3, [r4, #24]
+    1106:	4b10      	ldr	r3, [pc, #64]	; (1148 <configure_spi_master+0xc0>)
+    1108:	61a3      	str	r3, [r4, #24]
 	spi_init(&spi_master_instance, CONF_MASTER_SPI_MODULE, &config_spi_master);
-    1086:	4d10      	ldr	r5, [pc, #64]	; (10c8 <configure_spi_master+0xc4>)
-    1088:	0022      	movs	r2, r4
-    108a:	4910      	ldr	r1, [pc, #64]	; (10cc <configure_spi_master+0xc8>)
-    108c:	0028      	movs	r0, r5
-    108e:	4b10      	ldr	r3, [pc, #64]	; (10d0 <configure_spi_master+0xcc>)
-    1090:	4798      	blx	r3
+    110a:	4d10      	ldr	r5, [pc, #64]	; (114c <configure_spi_master+0xc4>)
+    110c:	0022      	movs	r2, r4
+    110e:	4910      	ldr	r1, [pc, #64]	; (1150 <configure_spi_master+0xc8>)
+    1110:	0028      	movs	r0, r5
+    1112:	4b10      	ldr	r3, [pc, #64]	; (1154 <configure_spi_master+0xcc>)
+    1114:	4798      	blx	r3
 {
 	/* Sanity check arguments */
 	Assert(module);
 	Assert(module->hw);
 
 	SercomSpi *const spi_module = &(module->hw->SPI);
-    1092:	682a      	ldr	r2, [r5, #0]
+    1116:	682a      	ldr	r2, [r5, #0]
 
 	SercomSpi *const spi_module = &(module->hw->SPI);
 
 #  ifdef FEATURE_SPI_SYNC_SCHEME_VERSION_2
 	/* Return synchronization status */
 	return (spi_module->SYNCBUSY.reg);
-    1094:	69d3      	ldr	r3, [r2, #28]
+    1118:	69d3      	ldr	r3, [r2, #28]
 
 #  if SPI_CALLBACK_MODE == true
 	system_interrupt_enable(_sercom_get_interrupt_vector(module->hw));
 #  endif
 
 	while (spi_is_syncing(module)) {
-    1096:	2b00      	cmp	r3, #0
-    1098:	d1fc      	bne.n	1094 <configure_spi_master+0x90>
+    111a:	2b00      	cmp	r3, #0
+    111c:	d1fc      	bne.n	1118 <configure_spi_master+0x90>
 		/* Wait until the synchronization is complete */
 	}
 
 	/* Enable SPI */
 	spi_module->CTRLA.reg |= SERCOM_SPI_CTRLA_ENABLE;
-    109a:	6811      	ldr	r1, [r2, #0]
-    109c:	3302      	adds	r3, #2
-    109e:	430b      	orrs	r3, r1
-    10a0:	6013      	str	r3, [r2, #0]
-
+    111e:	6811      	ldr	r1, [r2, #0]
+    1120:	3302      	adds	r3, #2
+    1122:	430b      	orrs	r3, r1
+    1124:	6013      	str	r3, [r2, #0]
 	spi_enable(&spi_master_instance);
 }
-    10a2:	b011      	add	sp, #68	; 0x44
-    10a4:	bd30      	pop	{r4, r5, pc}
-    10a6:	46c0      	nop			; (mov r8, r8)
-    10a8:	200000a8 	.word	0x200000a8
-    10ac:	000006c1 	.word	0x000006c1
-    10b0:	41004400 	.word	0x41004400
-    10b4:	00001291 	.word	0x00001291
-    10b8:	00160002 	.word	0x00160002
-    10bc:	00170002 	.word	0x00170002
-    10c0:	00180002 	.word	0x00180002
-    10c4:	002625a0 	.word	0x002625a0
-    10c8:	2000009c 	.word	0x2000009c
-    10cc:	42000c00 	.word	0x42000c00
-    10d0:	000002f9 	.word	0x000002f9
+    1126:	b011      	add	sp, #68	; 0x44
+    1128:	bd30      	pop	{r4, r5, pc}
+    112a:	46c0      	nop			; (mov r8, r8)
+    112c:	2000006c 	.word	0x2000006c
+    1130:	000006c1 	.word	0x000006c1
+    1134:	41004400 	.word	0x41004400
+    1138:	000012f9 	.word	0x000012f9
+    113c:	00160002 	.word	0x00160002
+    1140:	00170002 	.word	0x00170002
+    1144:	00180002 	.word	0x00180002
+    1148:	002625a0 	.word	0x002625a0
+    114c:	20000060 	.word	0x20000060
+    1150:	42000c00 	.word	0x42000c00
+    1154:	000002f9 	.word	0x000002f9
 
-000010d4 <main>:
-
-
-
+00001158 <main>:
+		delay_ms(50); 
+	}
+}
 
 int main (void)
 {
-    10d4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    1158:	b510      	push	{r4, lr}
 	system_init();
-    10d6:	4b0f      	ldr	r3, [pc, #60]	; (1114 <main+0x40>)
-    10d8:	4798      	blx	r3
+    115a:	4b0a      	ldr	r3, [pc, #40]	; (1184 <main+0x2c>)
+    115c:	4798      	blx	r3
 	delay_init();
-    10da:	4b0f      	ldr	r3, [pc, #60]	; (1118 <main+0x44>)
-    10dc:	4798      	blx	r3
-// 	TCC0->CC[3].reg = 0x9/3; // set duty cycle
-// 	tcc_enable(&tcc_instance);	
-// 	
-	//port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
+    115e:	4b0a      	ldr	r3, [pc, #40]	; (1188 <main+0x30>)
+    1160:	4798      	blx	r3
+
 	
 	configure_spi_master();
-    10de:	4b0f      	ldr	r3, [pc, #60]	; (111c <main+0x48>)
-    10e0:	4798      	blx	r3
-	spiSend(bits[value >> 4]);
-	spiSend(bits[value & 0xF]);
-}
+    1162:	4b0a      	ldr	r3, [pc, #40]	; (118c <main+0x34>)
+    1164:	4798      	blx	r3
+	
+	
+	while (1) {
+		        cometRacer(1, 0, 0);    // red
+    1166:	4c0a      	ldr	r4, [pc, #40]	; (1190 <main+0x38>)
+    1168:	2200      	movs	r2, #0
+    116a:	2100      	movs	r1, #0
+    116c:	2001      	movs	r0, #1
+    116e:	47a0      	blx	r4
+		        cometRacer(0, 1, 0);    // green
+    1170:	2200      	movs	r2, #0
+    1172:	2101      	movs	r1, #1
+    1174:	2000      	movs	r0, #0
+    1176:	47a0      	blx	r4
+		        cometRacer(0, 0, 1);    // blue
+    1178:	2201      	movs	r2, #1
+    117a:	2100      	movs	r1, #0
+    117c:	2000      	movs	r0, #0
+    117e:	47a0      	blx	r4
+    1180:	e7f2      	b.n	1168 <main+0x10>
+    1182:	46c0      	nop			; (mov r8, r8)
+    1184:	00000e1d 	.word	0x00000e1d
+    1188:	000000ed 	.word	0x000000ed
+    118c:	00001089 	.word	0x00001089
+    1190:	00001005 	.word	0x00001005
 
-static void sendRGB (int r, int g, int b) {
-    spiSend(0);
-    10e2:	4d0f      	ldr	r5, [pc, #60]	; (1120 <main+0x4c>)
-	spiSend(0);
-	sendByte(g);
-    10e4:	4e0f      	ldr	r6, [pc, #60]	; (1124 <main+0x50>)
-		//sendByte(1);
-		//spiSend(0b100100100100);
-		int i;
-		for(i=0;i<60;i++){
-			sendRGB(i,i,i);
-			delay_ms(100);
-    10e6:	4f10      	ldr	r7, [pc, #64]	; (1128 <main+0x54>)
-		//spi_write(&spi_master_instance,altbits[]);
-		
-		//sendByte(1);
-		//spiSend(0b100100100100);
-		int i;
-		for(i=0;i<60;i++){
-    10e8:	2400      	movs	r4, #0
-	spiSend(bits[value >> 4]);
-	spiSend(bits[value & 0xF]);
-}
+00001194 <__aeabi_uidiv>:
+    1194:	2200      	movs	r2, #0
+    1196:	0843      	lsrs	r3, r0, #1
+    1198:	428b      	cmp	r3, r1
+    119a:	d374      	bcc.n	1286 <__aeabi_uidiv+0xf2>
+    119c:	0903      	lsrs	r3, r0, #4
+    119e:	428b      	cmp	r3, r1
+    11a0:	d35f      	bcc.n	1262 <__aeabi_uidiv+0xce>
+    11a2:	0a03      	lsrs	r3, r0, #8
+    11a4:	428b      	cmp	r3, r1
+    11a6:	d344      	bcc.n	1232 <__aeabi_uidiv+0x9e>
+    11a8:	0b03      	lsrs	r3, r0, #12
+    11aa:	428b      	cmp	r3, r1
+    11ac:	d328      	bcc.n	1200 <__aeabi_uidiv+0x6c>
+    11ae:	0c03      	lsrs	r3, r0, #16
+    11b0:	428b      	cmp	r3, r1
+    11b2:	d30d      	bcc.n	11d0 <__aeabi_uidiv+0x3c>
+    11b4:	22ff      	movs	r2, #255	; 0xff
+    11b6:	0209      	lsls	r1, r1, #8
+    11b8:	ba12      	rev	r2, r2
+    11ba:	0c03      	lsrs	r3, r0, #16
+    11bc:	428b      	cmp	r3, r1
+    11be:	d302      	bcc.n	11c6 <__aeabi_uidiv+0x32>
+    11c0:	1212      	asrs	r2, r2, #8
+    11c2:	0209      	lsls	r1, r1, #8
+    11c4:	d065      	beq.n	1292 <__aeabi_uidiv+0xfe>
+    11c6:	0b03      	lsrs	r3, r0, #12
+    11c8:	428b      	cmp	r3, r1
+    11ca:	d319      	bcc.n	1200 <__aeabi_uidiv+0x6c>
+    11cc:	e000      	b.n	11d0 <__aeabi_uidiv+0x3c>
+    11ce:	0a09      	lsrs	r1, r1, #8
+    11d0:	0bc3      	lsrs	r3, r0, #15
+    11d2:	428b      	cmp	r3, r1
+    11d4:	d301      	bcc.n	11da <__aeabi_uidiv+0x46>
+    11d6:	03cb      	lsls	r3, r1, #15
+    11d8:	1ac0      	subs	r0, r0, r3
+    11da:	4152      	adcs	r2, r2
+    11dc:	0b83      	lsrs	r3, r0, #14
+    11de:	428b      	cmp	r3, r1
+    11e0:	d301      	bcc.n	11e6 <__aeabi_uidiv+0x52>
+    11e2:	038b      	lsls	r3, r1, #14
+    11e4:	1ac0      	subs	r0, r0, r3
+    11e6:	4152      	adcs	r2, r2
+    11e8:	0b43      	lsrs	r3, r0, #13
+    11ea:	428b      	cmp	r3, r1
+    11ec:	d301      	bcc.n	11f2 <__aeabi_uidiv+0x5e>
+    11ee:	034b      	lsls	r3, r1, #13
+    11f0:	1ac0      	subs	r0, r0, r3
+    11f2:	4152      	adcs	r2, r2
+    11f4:	0b03      	lsrs	r3, r0, #12
+    11f6:	428b      	cmp	r3, r1
+    11f8:	d301      	bcc.n	11fe <__aeabi_uidiv+0x6a>
+    11fa:	030b      	lsls	r3, r1, #12
+    11fc:	1ac0      	subs	r0, r0, r3
+    11fe:	4152      	adcs	r2, r2
+    1200:	0ac3      	lsrs	r3, r0, #11
+    1202:	428b      	cmp	r3, r1
+    1204:	d301      	bcc.n	120a <__aeabi_uidiv+0x76>
+    1206:	02cb      	lsls	r3, r1, #11
+    1208:	1ac0      	subs	r0, r0, r3
+    120a:	4152      	adcs	r2, r2
+    120c:	0a83      	lsrs	r3, r0, #10
+    120e:	428b      	cmp	r3, r1
+    1210:	d301      	bcc.n	1216 <__aeabi_uidiv+0x82>
+    1212:	028b      	lsls	r3, r1, #10
+    1214:	1ac0      	subs	r0, r0, r3
+    1216:	4152      	adcs	r2, r2
+    1218:	0a43      	lsrs	r3, r0, #9
+    121a:	428b      	cmp	r3, r1
+    121c:	d301      	bcc.n	1222 <__aeabi_uidiv+0x8e>
+    121e:	024b      	lsls	r3, r1, #9
+    1220:	1ac0      	subs	r0, r0, r3
+    1222:	4152      	adcs	r2, r2
+    1224:	0a03      	lsrs	r3, r0, #8
+    1226:	428b      	cmp	r3, r1
+    1228:	d301      	bcc.n	122e <__aeabi_uidiv+0x9a>
+    122a:	020b      	lsls	r3, r1, #8
+    122c:	1ac0      	subs	r0, r0, r3
+    122e:	4152      	adcs	r2, r2
+    1230:	d2cd      	bcs.n	11ce <__aeabi_uidiv+0x3a>
+    1232:	09c3      	lsrs	r3, r0, #7
+    1234:	428b      	cmp	r3, r1
+    1236:	d301      	bcc.n	123c <__aeabi_uidiv+0xa8>
+    1238:	01cb      	lsls	r3, r1, #7
+    123a:	1ac0      	subs	r0, r0, r3
+    123c:	4152      	adcs	r2, r2
+    123e:	0983      	lsrs	r3, r0, #6
+    1240:	428b      	cmp	r3, r1
+    1242:	d301      	bcc.n	1248 <__aeabi_uidiv+0xb4>
+    1244:	018b      	lsls	r3, r1, #6
+    1246:	1ac0      	subs	r0, r0, r3
+    1248:	4152      	adcs	r2, r2
+    124a:	0943      	lsrs	r3, r0, #5
+    124c:	428b      	cmp	r3, r1
+    124e:	d301      	bcc.n	1254 <__aeabi_uidiv+0xc0>
+    1250:	014b      	lsls	r3, r1, #5
+    1252:	1ac0      	subs	r0, r0, r3
+    1254:	4152      	adcs	r2, r2
+    1256:	0903      	lsrs	r3, r0, #4
+    1258:	428b      	cmp	r3, r1
+    125a:	d301      	bcc.n	1260 <__aeabi_uidiv+0xcc>
+    125c:	010b      	lsls	r3, r1, #4
+    125e:	1ac0      	subs	r0, r0, r3
+    1260:	4152      	adcs	r2, r2
+    1262:	08c3      	lsrs	r3, r0, #3
+    1264:	428b      	cmp	r3, r1
+    1266:	d301      	bcc.n	126c <__aeabi_uidiv+0xd8>
+    1268:	00cb      	lsls	r3, r1, #3
+    126a:	1ac0      	subs	r0, r0, r3
+    126c:	4152      	adcs	r2, r2
+    126e:	0883      	lsrs	r3, r0, #2
+    1270:	428b      	cmp	r3, r1
+    1272:	d301      	bcc.n	1278 <__aeabi_uidiv+0xe4>
+    1274:	008b      	lsls	r3, r1, #2
+    1276:	1ac0      	subs	r0, r0, r3
+    1278:	4152      	adcs	r2, r2
+    127a:	0843      	lsrs	r3, r0, #1
+    127c:	428b      	cmp	r3, r1
+    127e:	d301      	bcc.n	1284 <__aeabi_uidiv+0xf0>
+    1280:	004b      	lsls	r3, r1, #1
+    1282:	1ac0      	subs	r0, r0, r3
+    1284:	4152      	adcs	r2, r2
+    1286:	1a41      	subs	r1, r0, r1
+    1288:	d200      	bcs.n	128c <__aeabi_uidiv+0xf8>
+    128a:	4601      	mov	r1, r0
+    128c:	4152      	adcs	r2, r2
+    128e:	4610      	mov	r0, r2
+    1290:	4770      	bx	lr
+    1292:	e7ff      	b.n	1294 <__aeabi_uidiv+0x100>
+    1294:	b501      	push	{r0, lr}
+    1296:	2000      	movs	r0, #0
+    1298:	f000 f806 	bl	12a8 <__aeabi_idiv0>
+    129c:	bd02      	pop	{r1, pc}
+    129e:	46c0      	nop			; (mov r8, r8)
 
-static void sendRGB (int r, int g, int b) {
-    spiSend(0);
-    10ea:	2000      	movs	r0, #0
-    10ec:	47a8      	blx	r5
-	spiSend(0);
-    10ee:	2000      	movs	r0, #0
-    10f0:	47a8      	blx	r5
-	sendByte(g);
-    10f2:	0020      	movs	r0, r4
-    10f4:	47b0      	blx	r6
-	sendByte(r);
-    10f6:	0020      	movs	r0, r4
-    10f8:	47b0      	blx	r6
-	sendByte(b);
-    10fa:	0020      	movs	r0, r4
-    10fc:	47b0      	blx	r6
-	spiSend(0);
-    10fe:	2000      	movs	r0, #0
-    1100:	47a8      	blx	r5
-	spiSend(0);
-    1102:	2000      	movs	r0, #0
-    1104:	47a8      	blx	r5
-		//sendByte(1);
-		//spiSend(0b100100100100);
-		int i;
-		for(i=0;i<60;i++){
-			sendRGB(i,i,i);
-			delay_ms(100);
-    1106:	2064      	movs	r0, #100	; 0x64
-    1108:	47b8      	blx	r7
-		//spi_write(&spi_master_instance,altbits[]);
-		
-		//sendByte(1);
-		//spiSend(0b100100100100);
-		int i;
-		for(i=0;i<60;i++){
-    110a:	3401      	adds	r4, #1
-    110c:	2c3c      	cmp	r4, #60	; 0x3c
-    110e:	d1ec      	bne.n	10ea <main+0x16>
-    1110:	e7ea      	b.n	10e8 <main+0x14>
-    1112:	46c0      	nop			; (mov r8, r8)
-    1114:	00000e1d 	.word	0x00000e1d
-    1118:	000000ed 	.word	0x000000ed
-    111c:	00001005 	.word	0x00001005
-    1120:	00000fb1 	.word	0x00000fb1
-    1124:	00000fe1 	.word	0x00000fe1
-    1128:	0000012d 	.word	0x0000012d
+000012a0 <__aeabi_uidivmod>:
+    12a0:	2900      	cmp	r1, #0
+    12a2:	d0f7      	beq.n	1294 <__aeabi_uidiv+0x100>
+    12a4:	e776      	b.n	1194 <__aeabi_uidiv>
+    12a6:	4770      	bx	lr
 
-0000112c <__aeabi_uidiv>:
-    112c:	2200      	movs	r2, #0
-    112e:	0843      	lsrs	r3, r0, #1
-    1130:	428b      	cmp	r3, r1
-    1132:	d374      	bcc.n	121e <__aeabi_uidiv+0xf2>
-    1134:	0903      	lsrs	r3, r0, #4
-    1136:	428b      	cmp	r3, r1
-    1138:	d35f      	bcc.n	11fa <__aeabi_uidiv+0xce>
-    113a:	0a03      	lsrs	r3, r0, #8
-    113c:	428b      	cmp	r3, r1
-    113e:	d344      	bcc.n	11ca <__aeabi_uidiv+0x9e>
-    1140:	0b03      	lsrs	r3, r0, #12
-    1142:	428b      	cmp	r3, r1
-    1144:	d328      	bcc.n	1198 <__aeabi_uidiv+0x6c>
-    1146:	0c03      	lsrs	r3, r0, #16
-    1148:	428b      	cmp	r3, r1
-    114a:	d30d      	bcc.n	1168 <__aeabi_uidiv+0x3c>
-    114c:	22ff      	movs	r2, #255	; 0xff
-    114e:	0209      	lsls	r1, r1, #8
-    1150:	ba12      	rev	r2, r2
-    1152:	0c03      	lsrs	r3, r0, #16
-    1154:	428b      	cmp	r3, r1
-    1156:	d302      	bcc.n	115e <__aeabi_uidiv+0x32>
-    1158:	1212      	asrs	r2, r2, #8
-    115a:	0209      	lsls	r1, r1, #8
-    115c:	d065      	beq.n	122a <__aeabi_uidiv+0xfe>
-    115e:	0b03      	lsrs	r3, r0, #12
-    1160:	428b      	cmp	r3, r1
-    1162:	d319      	bcc.n	1198 <__aeabi_uidiv+0x6c>
-    1164:	e000      	b.n	1168 <__aeabi_uidiv+0x3c>
-    1166:	0a09      	lsrs	r1, r1, #8
-    1168:	0bc3      	lsrs	r3, r0, #15
-    116a:	428b      	cmp	r3, r1
-    116c:	d301      	bcc.n	1172 <__aeabi_uidiv+0x46>
-    116e:	03cb      	lsls	r3, r1, #15
-    1170:	1ac0      	subs	r0, r0, r3
-    1172:	4152      	adcs	r2, r2
-    1174:	0b83      	lsrs	r3, r0, #14
-    1176:	428b      	cmp	r3, r1
-    1178:	d301      	bcc.n	117e <__aeabi_uidiv+0x52>
-    117a:	038b      	lsls	r3, r1, #14
-    117c:	1ac0      	subs	r0, r0, r3
-    117e:	4152      	adcs	r2, r2
-    1180:	0b43      	lsrs	r3, r0, #13
-    1182:	428b      	cmp	r3, r1
-    1184:	d301      	bcc.n	118a <__aeabi_uidiv+0x5e>
-    1186:	034b      	lsls	r3, r1, #13
-    1188:	1ac0      	subs	r0, r0, r3
-    118a:	4152      	adcs	r2, r2
-    118c:	0b03      	lsrs	r3, r0, #12
-    118e:	428b      	cmp	r3, r1
-    1190:	d301      	bcc.n	1196 <__aeabi_uidiv+0x6a>
-    1192:	030b      	lsls	r3, r1, #12
-    1194:	1ac0      	subs	r0, r0, r3
-    1196:	4152      	adcs	r2, r2
-    1198:	0ac3      	lsrs	r3, r0, #11
-    119a:	428b      	cmp	r3, r1
-    119c:	d301      	bcc.n	11a2 <__aeabi_uidiv+0x76>
-    119e:	02cb      	lsls	r3, r1, #11
-    11a0:	1ac0      	subs	r0, r0, r3
-    11a2:	4152      	adcs	r2, r2
-    11a4:	0a83      	lsrs	r3, r0, #10
-    11a6:	428b      	cmp	r3, r1
-    11a8:	d301      	bcc.n	11ae <__aeabi_uidiv+0x82>
-    11aa:	028b      	lsls	r3, r1, #10
-    11ac:	1ac0      	subs	r0, r0, r3
-    11ae:	4152      	adcs	r2, r2
-    11b0:	0a43      	lsrs	r3, r0, #9
-    11b2:	428b      	cmp	r3, r1
-    11b4:	d301      	bcc.n	11ba <__aeabi_uidiv+0x8e>
-    11b6:	024b      	lsls	r3, r1, #9
-    11b8:	1ac0      	subs	r0, r0, r3
-    11ba:	4152      	adcs	r2, r2
-    11bc:	0a03      	lsrs	r3, r0, #8
-    11be:	428b      	cmp	r3, r1
-    11c0:	d301      	bcc.n	11c6 <__aeabi_uidiv+0x9a>
-    11c2:	020b      	lsls	r3, r1, #8
-    11c4:	1ac0      	subs	r0, r0, r3
-    11c6:	4152      	adcs	r2, r2
-    11c8:	d2cd      	bcs.n	1166 <__aeabi_uidiv+0x3a>
-    11ca:	09c3      	lsrs	r3, r0, #7
-    11cc:	428b      	cmp	r3, r1
-    11ce:	d301      	bcc.n	11d4 <__aeabi_uidiv+0xa8>
-    11d0:	01cb      	lsls	r3, r1, #7
-    11d2:	1ac0      	subs	r0, r0, r3
-    11d4:	4152      	adcs	r2, r2
-    11d6:	0983      	lsrs	r3, r0, #6
-    11d8:	428b      	cmp	r3, r1
-    11da:	d301      	bcc.n	11e0 <__aeabi_uidiv+0xb4>
-    11dc:	018b      	lsls	r3, r1, #6
-    11de:	1ac0      	subs	r0, r0, r3
-    11e0:	4152      	adcs	r2, r2
-    11e2:	0943      	lsrs	r3, r0, #5
-    11e4:	428b      	cmp	r3, r1
-    11e6:	d301      	bcc.n	11ec <__aeabi_uidiv+0xc0>
-    11e8:	014b      	lsls	r3, r1, #5
-    11ea:	1ac0      	subs	r0, r0, r3
-    11ec:	4152      	adcs	r2, r2
-    11ee:	0903      	lsrs	r3, r0, #4
-    11f0:	428b      	cmp	r3, r1
-    11f2:	d301      	bcc.n	11f8 <__aeabi_uidiv+0xcc>
-    11f4:	010b      	lsls	r3, r1, #4
-    11f6:	1ac0      	subs	r0, r0, r3
-    11f8:	4152      	adcs	r2, r2
-    11fa:	08c3      	lsrs	r3, r0, #3
-    11fc:	428b      	cmp	r3, r1
-    11fe:	d301      	bcc.n	1204 <__aeabi_uidiv+0xd8>
-    1200:	00cb      	lsls	r3, r1, #3
-    1202:	1ac0      	subs	r0, r0, r3
-    1204:	4152      	adcs	r2, r2
-    1206:	0883      	lsrs	r3, r0, #2
-    1208:	428b      	cmp	r3, r1
-    120a:	d301      	bcc.n	1210 <__aeabi_uidiv+0xe4>
-    120c:	008b      	lsls	r3, r1, #2
-    120e:	1ac0      	subs	r0, r0, r3
-    1210:	4152      	adcs	r2, r2
-    1212:	0843      	lsrs	r3, r0, #1
-    1214:	428b      	cmp	r3, r1
-    1216:	d301      	bcc.n	121c <__aeabi_uidiv+0xf0>
-    1218:	004b      	lsls	r3, r1, #1
-    121a:	1ac0      	subs	r0, r0, r3
-    121c:	4152      	adcs	r2, r2
-    121e:	1a41      	subs	r1, r0, r1
-    1220:	d200      	bcs.n	1224 <__aeabi_uidiv+0xf8>
-    1222:	4601      	mov	r1, r0
-    1224:	4152      	adcs	r2, r2
-    1226:	4610      	mov	r0, r2
-    1228:	4770      	bx	lr
-    122a:	e7ff      	b.n	122c <__aeabi_uidiv+0x100>
-    122c:	b501      	push	{r0, lr}
-    122e:	2000      	movs	r0, #0
-    1230:	f000 f806 	bl	1240 <__aeabi_idiv0>
-    1234:	bd02      	pop	{r1, pc}
-    1236:	46c0      	nop			; (mov r8, r8)
+000012a8 <__aeabi_idiv0>:
+    12a8:	4770      	bx	lr
+    12aa:	46c0      	nop			; (mov r8, r8)
 
-00001238 <__aeabi_uidivmod>:
-    1238:	2900      	cmp	r1, #0
-    123a:	d0f7      	beq.n	122c <__aeabi_uidiv+0x100>
-    123c:	e776      	b.n	112c <__aeabi_uidiv>
-    123e:	4770      	bx	lr
+000012ac <__libc_init_array>:
+    12ac:	4b0e      	ldr	r3, [pc, #56]	; (12e8 <__libc_init_array+0x3c>)
+    12ae:	b570      	push	{r4, r5, r6, lr}
+    12b0:	2500      	movs	r5, #0
+    12b2:	001e      	movs	r6, r3
+    12b4:	4c0d      	ldr	r4, [pc, #52]	; (12ec <__libc_init_array+0x40>)
+    12b6:	1ae4      	subs	r4, r4, r3
+    12b8:	10a4      	asrs	r4, r4, #2
+    12ba:	42a5      	cmp	r5, r4
+    12bc:	d004      	beq.n	12c8 <__libc_init_array+0x1c>
+    12be:	00ab      	lsls	r3, r5, #2
+    12c0:	58f3      	ldr	r3, [r6, r3]
+    12c2:	4798      	blx	r3
+    12c4:	3501      	adds	r5, #1
+    12c6:	e7f8      	b.n	12ba <__libc_init_array+0xe>
+    12c8:	f000 f858 	bl	137c <_init>
+    12cc:	4b08      	ldr	r3, [pc, #32]	; (12f0 <__libc_init_array+0x44>)
+    12ce:	2500      	movs	r5, #0
+    12d0:	001e      	movs	r6, r3
+    12d2:	4c08      	ldr	r4, [pc, #32]	; (12f4 <__libc_init_array+0x48>)
+    12d4:	1ae4      	subs	r4, r4, r3
+    12d6:	10a4      	asrs	r4, r4, #2
+    12d8:	42a5      	cmp	r5, r4
+    12da:	d004      	beq.n	12e6 <__libc_init_array+0x3a>
+    12dc:	00ab      	lsls	r3, r5, #2
+    12de:	58f3      	ldr	r3, [r6, r3]
+    12e0:	4798      	blx	r3
+    12e2:	3501      	adds	r5, #1
+    12e4:	e7f8      	b.n	12d8 <__libc_init_array+0x2c>
+    12e6:	bd70      	pop	{r4, r5, r6, pc}
+    12e8:	00001388 	.word	0x00001388
+    12ec:	00001388 	.word	0x00001388
+    12f0:	00001388 	.word	0x00001388
+    12f4:	0000138c 	.word	0x0000138c
 
-00001240 <__aeabi_idiv0>:
-    1240:	4770      	bx	lr
-    1242:	46c0      	nop			; (mov r8, r8)
+000012f8 <memset>:
+    12f8:	0003      	movs	r3, r0
+    12fa:	1882      	adds	r2, r0, r2
+    12fc:	4293      	cmp	r3, r2
+    12fe:	d002      	beq.n	1306 <memset+0xe>
+    1300:	7019      	strb	r1, [r3, #0]
+    1302:	3301      	adds	r3, #1
+    1304:	e7fa      	b.n	12fc <memset+0x4>
+    1306:	4770      	bx	lr
+    1308:	42000800 	.word	0x42000800
+    130c:	42000c00 	.word	0x42000c00
+    1310:	42001000 	.word	0x42001000
+    1314:	000006f6 	.word	0x000006f6
+    1318:	000006f2 	.word	0x000006f2
+    131c:	000006f2 	.word	0x000006f2
+    1320:	00000750 	.word	0x00000750
+    1324:	00000750 	.word	0x00000750
+    1328:	0000070a 	.word	0x0000070a
+    132c:	000006fc 	.word	0x000006fc
+    1330:	00000710 	.word	0x00000710
+    1334:	0000073e 	.word	0x0000073e
+    1338:	000008e8 	.word	0x000008e8
+    133c:	000008c8 	.word	0x000008c8
+    1340:	000008c8 	.word	0x000008c8
+    1344:	00000954 	.word	0x00000954
+    1348:	000008da 	.word	0x000008da
+    134c:	000008f6 	.word	0x000008f6
+    1350:	000008cc 	.word	0x000008cc
+    1354:	00000904 	.word	0x00000904
+    1358:	00000944 	.word	0x00000944
 
-00001244 <__libc_init_array>:
-    1244:	4b0e      	ldr	r3, [pc, #56]	; (1280 <__libc_init_array+0x3c>)
-    1246:	b570      	push	{r4, r5, r6, lr}
-    1248:	2500      	movs	r5, #0
-    124a:	001e      	movs	r6, r3
-    124c:	4c0d      	ldr	r4, [pc, #52]	; (1284 <__libc_init_array+0x40>)
-    124e:	1ae4      	subs	r4, r4, r3
-    1250:	10a4      	asrs	r4, r4, #2
-    1252:	42a5      	cmp	r5, r4
-    1254:	d004      	beq.n	1260 <__libc_init_array+0x1c>
-    1256:	00ab      	lsls	r3, r5, #2
-    1258:	58f3      	ldr	r3, [r6, r3]
-    125a:	4798      	blx	r3
-    125c:	3501      	adds	r5, #1
-    125e:	e7f8      	b.n	1252 <__libc_init_array+0xe>
-    1260:	f000 f858 	bl	1314 <_init>
-    1264:	4b08      	ldr	r3, [pc, #32]	; (1288 <__libc_init_array+0x44>)
-    1266:	2500      	movs	r5, #0
-    1268:	001e      	movs	r6, r3
-    126a:	4c08      	ldr	r4, [pc, #32]	; (128c <__libc_init_array+0x48>)
-    126c:	1ae4      	subs	r4, r4, r3
-    126e:	10a4      	asrs	r4, r4, #2
-    1270:	42a5      	cmp	r5, r4
-    1272:	d004      	beq.n	127e <__libc_init_array+0x3a>
-    1274:	00ab      	lsls	r3, r5, #2
-    1276:	58f3      	ldr	r3, [r6, r3]
-    1278:	4798      	blx	r3
-    127a:	3501      	adds	r5, #1
-    127c:	e7f8      	b.n	1270 <__libc_init_array+0x2c>
-    127e:	bd70      	pop	{r4, r5, r6, pc}
-    1280:	00001320 	.word	0x00001320
-    1284:	00001320 	.word	0x00001320
-    1288:	00001320 	.word	0x00001320
-    128c:	00001324 	.word	0x00001324
+0000135c <bits>:
+    135c:	09260924 09360934 09a609a4 09b609b4     $.&.4.6.........
+    136c:	0d260d24 0d360d34 0da60da4 0db60db4     $.&.4.6.........
 
-00001290 <memset>:
-    1290:	0003      	movs	r3, r0
-    1292:	1882      	adds	r2, r0, r2
-    1294:	4293      	cmp	r3, r2
-    1296:	d002      	beq.n	129e <memset+0xe>
-    1298:	7019      	strb	r1, [r3, #0]
-    129a:	3301      	adds	r3, #1
-    129c:	e7fa      	b.n	1294 <memset+0x4>
-    129e:	4770      	bx	lr
-    12a0:	42000800 	.word	0x42000800
-    12a4:	42000c00 	.word	0x42000c00
-    12a8:	42001000 	.word	0x42001000
-    12ac:	000006f6 	.word	0x000006f6
-    12b0:	000006f2 	.word	0x000006f2
-    12b4:	000006f2 	.word	0x000006f2
-    12b8:	00000750 	.word	0x00000750
-    12bc:	00000750 	.word	0x00000750
-    12c0:	0000070a 	.word	0x0000070a
-    12c4:	000006fc 	.word	0x000006fc
-    12c8:	00000710 	.word	0x00000710
-    12cc:	0000073e 	.word	0x0000073e
-    12d0:	000008e8 	.word	0x000008e8
-    12d4:	000008c8 	.word	0x000008c8
-    12d8:	000008c8 	.word	0x000008c8
-    12dc:	00000954 	.word	0x00000954
-    12e0:	000008da 	.word	0x000008da
-    12e4:	000008f6 	.word	0x000008f6
-    12e8:	000008cc 	.word	0x000008cc
-    12ec:	00000904 	.word	0x00000904
-    12f0:	00000944 	.word	0x00000944
+0000137c <_init>:
+    137c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    137e:	46c0      	nop			; (mov r8, r8)
+    1380:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    1382:	bc08      	pop	{r3}
+    1384:	469e      	mov	lr, r3
+    1386:	4770      	bx	lr
 
-000012f4 <bits>:
-    12f4:	09260924 09360934 09a609a4 09b609b4     $.&.4.6.........
-    1304:	0d260d24 0d360d34 0da60da4 0db60db4     $.&.4.6.........
+00001388 <__init_array_start>:
+    1388:	000000b5 	.word	0x000000b5
 
-00001314 <_init>:
-    1314:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-    1316:	46c0      	nop			; (mov r8, r8)
-    1318:	bcf8      	pop	{r3, r4, r5, r6, r7}
-    131a:	bc08      	pop	{r3}
-    131c:	469e      	mov	lr, r3
-    131e:	4770      	bx	lr
+0000138c <_fini>:
+    138c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    138e:	46c0      	nop			; (mov r8, r8)
+    1390:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    1392:	bc08      	pop	{r3}
+    1394:	469e      	mov	lr, r3
+    1396:	4770      	bx	lr
 
-00001320 <__init_array_start>:
-    1320:	000000b5 	.word	0x000000b5
-
-00001324 <_fini>:
-    1324:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-    1326:	46c0      	nop			; (mov r8, r8)
-    1328:	bcf8      	pop	{r3, r4, r5, r6, r7}
-    132a:	bc08      	pop	{r3}
-    132c:	469e      	mov	lr, r3
-    132e:	4770      	bx	lr
-
-00001330 <__fini_array_start>:
-    1330:	0000008d 	.word	0x0000008d
+00001398 <__fini_array_start>:
+    1398:	0000008d 	.word	0x0000008d
