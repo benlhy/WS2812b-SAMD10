@@ -8,6 +8,7 @@
 
 
 #include <asf.h>
+#include <math.h>
 	
 	
 #define NUM_LEDS 12
@@ -52,6 +53,7 @@ static const uint16_t bits[] = {
 	0b110110110110, // 1111
 };
 
+uint8_t pixelArray[NUM_LEDS][3]={};//empty array
 
 
 
@@ -101,7 +103,7 @@ static void sendRGB (int r, int g, int b) {
 }
 
 static void cometTail (int count, int r, int g, int b) {
-	spiSend(0); // we need to send zero bytes for the sytem to reset itself!
+	spiSend(0); // we need to send zero bytes for the system to reset itself!
 	spiSend(0);
 	for (int i = NUM_LEDS - count; i <= NUM_LEDS; ++i) {
 		int phase = 4 * i;
@@ -112,11 +114,193 @@ static void cometTail (int count, int r, int g, int b) {
 }
 
 static void cometRacer(int r, int g, int b) {
-	for (int i = 0; i < NUM_LEDS*3; ++i) {
+	for (int i = 0; i < NUM_LEDS*2; ++i) {
 		cometTail(i, r, g, b);
 		delay_ms(50); 
 	}
 }
+
+// wrapper for LED animations
+static void showStrip(void){
+	spiSend(0);
+	spiSend(0);
+	for(int i=0;i<NUM_LEDS;i++){
+		sendRGB(pixelArray[i][0],pixelArray[i][1],pixelArray[i][2]);
+	}
+}
+
+static void setPixel(int count, int r, int g, int b){
+	pixelArray[count][0] = r;
+	pixelArray[count][1] = g;
+	pixelArray[count][2] = b;
+}
+
+static uint32_t getPixel(int count){
+	uint32_t val = pixelArray[count][0]<<16|pixelArray[count][1]<<8|pixelArray[count][2];
+	return val;
+}
+
+static void setAll(int r, int g, int b){
+	for (int i = 0;i<NUM_LEDS;i++){
+		setPixel(i,r,g,b);
+	}
+}
+
+static int random_range(int min, int max){
+	return rand()%(max-min)+min;
+}
+
+static void delay(int delay_time){
+	delay_ms(delay_time);
+}
+
+void RGBLoop(){
+  for(int j = 0; j < 3; j++ ) { 
+    // Fade IN
+    for(int k = 0; k < 256; k++) { 
+      switch(j) { 
+        case 0: setAll(k,0,0); break;
+        case 1: setAll(0,k,0); break;
+        case 2: setAll(0,0,k); break;
+      }
+      showStrip();
+      delay(3);
+    }
+    // Fade OUT
+    for(int k = 255; k >= 0; k--) { 
+      switch(j) { 
+        case 0: setAll(k,0,0); break;
+        case 1: setAll(0,k,0); break;
+        case 2: setAll(0,0,k); break;
+      }
+      showStrip();
+      delay(3);
+    }
+  }
+}
+
+void FadeInOut(uint8_t red, uint8_t green, uint8_t blue){
+  float r, g, b;
+      
+  for(int k = 0; k < 256; k=k+1) { 
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    showStrip();
+  }
+     
+  for(int k = 255; k >= 0; k=k-2) {
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    showStrip();
+  }
+}
+
+void setPixelHeatColor (int Pixel, uint8_t temperature) {
+	// Scale 'heat' down from 0-255 to 0-191
+	uint8_t t192 = ((float)temperature/255.0)*191;
+	
+	// calculate ramp up from
+	uint8_t heatramp = t192 & 0x3F; // 0..63
+	heatramp <<= 2; // scale up to 0..252
+	
+	// figure out which third of the spectrum we're in:
+	if( t192 > 0x80) {                     // hottest
+		setPixel(Pixel, 255, 255, heatramp);
+		} else if( t192 > 0x40 ) {             // middle
+		setPixel(Pixel, 255, heatramp, 0);
+		} else {                               // coolest
+		setPixel(Pixel, heatramp, 0, 0);
+	}
+}
+
+void Fire(int Cooling, int Sparking, int SpeedDelay) {
+	static uint8_t heat[NUM_LEDS];
+	int cooldown;
+	
+	// Step 1.  Cool down every cell a little
+	for( int i = 0; i < NUM_LEDS; i++) {
+		cooldown = random_range(0, ((Cooling * 10) / NUM_LEDS) + 2);
+		
+		if(cooldown>heat[i]) {
+			heat[i]=0;
+			} else {
+			heat[i]=heat[i]-cooldown;
+		}
+	}
+	
+	// Step 2.  Heat from each cell drifts 'up' and diffuses a little
+	for( int k= NUM_LEDS - 1; k >= 2; k--) {
+		heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2]) / 3;
+	}
+	
+	// Step 3.  Randomly ignite new 'sparks' near the bottom
+	if( random_range(0,255) < Sparking ) {
+		int y = random_range(0,7);
+		heat[y] = heat[y] + random_range(160,255);
+		//heat[y] = random(160,255);
+	}
+
+	// Step 4.  Convert heat to LED colors
+// 	spiSend(0); // we need to send zero bytes for the system to reset itself!
+// 	spiSend(0);
+	for( int j = 0; j < NUM_LEDS; j++) {
+		setPixelHeatColor(j, heat[j] );
+	}
+
+	showStrip();
+	delay(SpeedDelay);
+}
+
+void fadeToBlack(int ledNo, uint8_t fadeValue) {
+
+	uint32_t oldColor;
+	uint8_t r, g, b;
+	int value;
+	
+	oldColor = getPixel(ledNo);
+	r = (oldColor & 0x00ff0000UL) >> 16;
+	g = (oldColor & 0x0000ff00UL) >> 8;
+	b = (oldColor & 0x000000ffUL);
+
+	r=(r<=10)? 0 : (int) r-(r*fadeValue/256);
+	g=(g<=10)? 0 : (int) g-(g*fadeValue/256);
+	b=(b<=10)? 0 : (int) b-(b*fadeValue/256);
+	
+	setPixel(ledNo, r,g,b);
+
+
+}
+
+void meteorRain(uint8_t red, uint8_t green, uint8_t blue, uint8_t meteorSize, uint8_t meteorTrailDecay, bool meteorRandomDecay, int SpeedDelay) {
+	setAll(0,0,0);
+	
+	for(int i = 0; i < NUM_LEDS+NUM_LEDS; i++) {
+		
+		
+		// fade brightness all LEDs one step
+		for(int j=0; j<NUM_LEDS; j++) {
+			if( (!meteorRandomDecay) || (random_range(0,10)>5) ) {
+				fadeToBlack(j, meteorTrailDecay );
+			}
+		}
+		
+		// draw meteor
+		for(int j = 0; j < meteorSize; j++) {
+			if( ( i-j <NUM_LEDS) && (i-j>=0) ) {
+				setPixel(i-j, red, green, blue);
+			}
+		}
+		
+		showStrip();
+		delay(SpeedDelay);
+	}
+}
+
+
 
 int main (void)
 {
@@ -125,12 +309,20 @@ int main (void)
 
 	
 	configure_spi_master();
-	
+	setAll(0,0,0);
+	showStrip();
 	
 	while (1) {
-		        cometRacer(1, 0, 0);    // red
-		        cometRacer(0, 1, 0);    // green
-		        cometRacer(0, 0, 1);    // blue
+		meteorRain(0xff,0xff,0xff,1, 200, true, 60);
+		delay(50);
+// 		setPixel(6,128,0,0);
+// 		showStrip();
+// 		delay(5);
+		//FadeInOut(0xff, 0x77, 0x00);
+		//RGBLoop();
+// 		        cometRacer(1, 0, 0);    // red
+// 		        cometRacer(0, 1, 0);    // green
+// 		        cometRacer(0, 0, 1);    // blue
 
 	}
 }
