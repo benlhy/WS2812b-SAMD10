@@ -11,7 +11,7 @@
 #include <math.h>
 	
 	
-#define NUM_LEDS 12
+#define NUM_LEDS 34
 
 
 // SPI uses SERCOM1
@@ -301,7 +301,7 @@ void meteorRain(uint8_t red, uint8_t green, uint8_t blue, uint8_t meteorSize, ui
 }
 
 
-
+// PA22
 int main (void)
 {
 	system_init();
@@ -313,7 +313,7 @@ int main (void)
 	showStrip();
 	
 	while (1) {
-		meteorRain(0xff,0xff,0xff,1, 200, true, 60);
+		meteorRain(0xf0,0x00,0xf0,1, 200, true, 40);
 		delay(50);
 // 		setPixel(6,128,0,0);
 // 		showStrip();
